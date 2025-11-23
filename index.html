@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Narith Hen | Junior Web Developer</title>
+  <meta name="description" content="Narith Hen - Junior Web Developer | Full-Stack Enthusiast | HTML, CSS, JavaScript, Python, Flask"/>
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- AOS Animation -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 70%);
+      color: #e2e8f0;
+      scroll-behavior: smooth;
+      transition: all 0.5s ease;
+    }
+    .dark { background: linear-gradient(135deg, #0f172a 0%, #1e293b 70%); color: #e2e8f0; }
+    .light { background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 70%); color: #1e293b; }
+
+    .text-yellow { color: #FDB827; }
+    .text-blue { color: #21209C; }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: #1e293b; }
+    ::-webkit-scrollbar-thumb { background: #FDB827; border-radius: 10px; }
+    .light ::-webkit-scrollbar-track { background: #cbd5e1; }
+
+    /* Navbar */
+    .nav-link::after {
+      content: ''; position: absolute; width: 0; height: 3px; bottom: -8px; left: 50%;
+      background: #FDB827; transition: all 0.4s ease; transform: translateX(-50%);
+    }
+    .nav-link:hover::after { width: 100%; }
+
+    /* Pulse */
+    .btn-primary { animation: pulse 2s infinite; }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(253, 184, 39, 0.7); } 70% { box-shadow: 0 0 0 12px rgba(253, 184, 39, 0); } 100% { box-shadow: 0 0 0 0 rgba(253, 184, 39, 0); } }
+
+    /* Typing cursor */
+    @keyframes blink { 0%, 100% { border-color: transparent; } 50% { border-color: #FDB827; } }
+    .cursor { border-right: 4px solid #FDB827; animation: blink 0.7s infinite; }
+
+    /* Theme toggle */
+    #theme-toggle {
+      position: fixed; top: 20px; right: 20px; z-index: 1000;
+      background: rgba(30, 41, 59, 0.8); backdrop-filter: blur(10px);
+      width: 56px; height: 56px; border-radius: 50%; display: flex;
+      align-items: center; justify-content: center; cursor: pointer;
+      transition: all 0.4s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+    #theme-toggle:hover { transform: scale(1.1); background: #FDB827; }
+    #theme-toggle i { font-size: 24px; color: #FDB827; transition: all 0.4s ease; }
+    .light #theme-toggle { background: rgba(248, 250, 252, 0.9); }
+    .light #theme-toggle i { color: #1e293b; }
+
+    /* Success message */
+    #success-message {
+      position: fixed; top: 100px; left: 50%; transform: translateX(-50%);
+      background: #10b981; color: white; padding: 1rem 2rem; border-radius: 50px;
+      z-index: 9999; opacity: 0; transition: all 0.5s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    #success-message.show { opacity: 1; top: 80px; }
+
+    /* Testimonial carousel */
+    .testimonial-card {
+      background: rgba(30, 41, 59, 0.6);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(253, 184, 39, 0.3);
+    }
+    .light .testimonial-card {
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(253, 184, 39, 0.4);
+    }
+  </style>
+</head>
+<body class="min-h-screen dark">
+
+  <!-- Theme Toggle -->
+  <div id="theme-toggle" onclick="toggleTheme()">
+    <i class="fas fa-moon"></i>
+  </div>
+
+  <!-- Success Message -->
+  <div id="success-message">Thank you! Your message has been sent</div>
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 w-full bg-slate-900/95 dark:bg-slate-900/95 light:bg-white/90 backdrop-blur-lg z-50 border-b border-gray-800 dark:border-gray-800 light:border-gray-300">
+    <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+      <h1 class="text-2xl font-bold"><span class="text-yellow">Narith</span><span class="dark:text-white light:text-gray-900"> Hen</span></h1>
+      <div class="hidden md:flex space-x-10 text-lg">
+        <a href="#home" class="nav-link relative dark:hover:text-yellow light:hover:text-yellow transition">Home</a>
+        <a href="#about" class="nav-link relative dark:hover:text-yellow light:hover:text-yellow transition">About</a>
+        <a href="#skills" class="nav-link relative dark:hover:text-yellow light:hover:text-yellow transition">Skills</a>
+        <a href="#projects" class="nav-link relative dark:hover:text-yellow light:hover:text-yellow transition">Projects</a>
+        <a href="#testimonials" class="nav-link relative dark:hover:text-yellow light:hover:text-yellow transition">Testimonials</a>
+        <a href="#education" class="nav-link relative dark:hover:text-yellow light:hover:text-yellow transition">Education</a>
+        <a href="#contact" class="nav-link relative dark:hover:text-yellow light:hover:text-yellow transition">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="min-h-screen flex items-center justify-center px-6 pt-24">
+    <div class="text-center max-w-5xl" data-aos="zoom-in" data-aos-delay="100">
+      <img src="images/profile.jpg" alt="Narith Hen" class="w-52 h-52 rounded-full mx-auto mb-8 border-8 border-yellow shadow-2xl object-cover" data-aos="fade-down" data-aos-delay="300"/>
+      <h1 class="text-5xl md:text-7xl font-extrabold mb-4" data-aos="fade-up" data-aos-delay="500">
+        Hi, I'm <span class="text-yellow">Narith Hen</span>
+      </h1>
+      <p class="text-2xl md:text-4xl font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-6 h-16" data-aos="fade-up" data-aos-delay="700">
+        <span id="typing-text"></span><span class="cursor ml-1"></span>
+      </p>
+      <p class="text-xl text-gray-400 dark:text-gray-400 light:text-gray-600 max-w-3xl mx-auto leading-relaxed mb-10" data-aos="fade-up" data-aos-delay="900">
+        I am a web developer who enjoys building both the <span class="text-yellow">front-end</span> and <span class="text-blue">back-end</span> of websites.
+      </p>
+      <div class="mt-12 space-x-6" data-aos="fade-up" data-aos-delay="1100">
+        <a href="#projects" class="bg-yellow text-black font-bold py-4 px-10 rounded-full hover:bg-opacity-90 transition text-lg btn-primary shadow-lg">My Projects</a>
+        <a href="#contact" class="border-2 border-yellow text-yellow font-bold py-4 px-10 rounded-full hover:bg-yellow hover:text-black transition text-lg shadow-lg">Hire Me</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Me -->
+  <section id="about" class="py-24 px-6" data-aos="fade-up">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-5xl font-bold text-center mb-16 text-yellow">About Me</h2>
+      <div class="grid md:grid-cols-2 gap-16 items-center">
+        <div data-aos="fade-right">
+          <img src="images/profile-about.jpg" alt="My Profile" class="rounded-2xl shadow-2xl w-full"/>
+        </div>
+        <div class="text-lg leading-8 text-gray-300 dark:text-gray-300 light:text-gray-700" data-aos="fade-left">
+          <p class="mb-6">
+            A junior web developer who likes solving problems and learning new skills. I have experience in frontend development and enjoy turning designs into real websites.
+          </p>
+          <p>
+            I focus on <span class="text-yellow font-semibold">HTML</span>, <span class="text-yellow font-semibold">CSS</span>, <span class="text-yellow font-semibold">SASS</span>, <span class="text-blue font-semibold">Python</span>, and <span class="text-blue font-semibold">MySQL</span>.
+          </p>
+          <p class="mt-6">
+            Tools I use every day: <span class="text-yellow">Git & GitHub</span>, <span class="text-yellow">VS Code</span>, <span class="text-yellow">Figma</span>, and <span class="text-yellow">Canva</span>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="py-24 px-6 bg-slate-900/60 dark:bg-slate-900/60 light:bg-gray-100">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-5xl font-bold text-center mb-20 text-yellow" data-aos="fade-up">Skills</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-12">
+        <div class="text-center" data-aos="zoom-in" data-aos-delay="100">
+          <i class="fa-solid fa-palette text-7xl mb-4 text-yellow transition-all duration-300 hover:scale-125"></i>
+          <h3 class="text-2xl font-bold dark:text-white light:text-gray-900">Frontend</h3>
+          <p class="text-gray-400 dark:text-gray-400 light:text-gray-600 mt-3">HTML, CSS, SASS, JavaScript</p>
+        </div>
+        <div class="text-center" data-aos="zoom-in" data-aos-delay="200">
+          <i class="fa-solid fa-server text-7xl mb-4 text-blue transition-all duration-300 hover:scale-125"></i>
+          <h3 class="text-2xl font-bold dark:text-white light:text-gray-900">Backend</h3>
+          <p class="text-gray-400 dark:text-gray-400 light:text-gray-600 mt-3">Python, Flask, SQLite, MySQL</p>
+        </div>
+        <div class="text-center" data-aos="zoom-in" data-aos-delay="300">
+          <i class="fa-solid fa-wrench text-7xl mb-4 text-yellow transition-all duration-300 hover:scale-125"></i>
+          <h3 class="text-2xl font-bold dark:text-white light:text-gray-900">Tools</h3>
+          <p class="text-gray-400 dark:text-gray-400 light:text-gray-600 mt-3">Git, GitHub, Figma, Canva, VS Code</p>
+        </div>
+        <div class="text-center" data-aos="zoom-in" data-aos-delay="400">
+          <i class="fa-solid fa-user-friends text-7xl mb-4 text-blue transition-all duration-300 hover:scale-125"></i>
+          <h3 class="text-2xl font-bold dark:text-white light:text-gray-900">Soft Skills</h3>
+          <p class="text-gray-400 dark:text-gray-400 light:text-gray-600 mt-3">Teamwork, Communication<br>Problem-solving, Time Management</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="py-24 px-6">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-5xl font-bold text-center mb-20 text-yellow" data-aos="fade-up">Projects</h2>
+      <div class="grid md:grid-cols-2 gap-12">
+        <div class="bg-slate-800/80 dark:bg-slate-800/80 light:bg-white/90 rounded-2xl overflow-hidden shadow-2xl hover:shadow-yellow/20 transition-all duration-500" data-aos="flip-left">
+          <img src="images/travel-preview.jpg" alt="Travel Destination" class="w-full h-64 object-cover"/>
+          <div class="p-8 dark:text-gray-300 light:text-gray-700">
+            <h3 class="text-3xl font-bold text-yellow mb-3">Travel Destination</h3>
+            <p class="mb-6">A website that gives customers a sense of adventure with their travels...</p>
+            <p class="text-sm text-gray-500 mb-4">HTML • CSS • SASS • Figma</p>
+            <div class="flex space-x-6 text-lg">
+              <a href="https://github.com/Narith-hen/project-travel-destination.git" target="_blank" class="text-yellow hover:underline">GitHub</a>
+              <a href="https://project-travel-destination.vercel.app/index.html" target="_blank" class="text-blue hover:underline">Live Demo</a>
+            </div>
+            <div class="mt-8 text-sm">
+              <p class="font-semibold text-yellow mb-2">What I Learned:</p>
+              <ul class="list-disc list-inside space-y-1 text-gray-400 dark:text-gray-400 light:text-gray-600">
+                <li>I can build the project by myself</li>
+                <li>Learned how to properly prepare folders and files</li>
+                <li>Gained confidence to decide and start something new</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate-800/80 dark:bg-slate-800/80 light:bg-white/90 rounded-2xl overflow-hidden shadow-2xl hover:shadow-yellow/20 transition-all duration-500" data-aos="flip-right">
+          <img src="images/student-preview.jpg" alt="Student Results System" class="w-full h-64 object-cover"/>
+          <div class="p-8 dark:text-gray-300 light:text-gray-700">
+            <h3 class="text-3xl font-bold text-yellow mb-3">System Send Student Results</h3>
+            <p class="mb-6">A professional web application for teachers...</p>
+            <p class="text-sm text-gray-500 mb-4">Python • Flask • Tailwind • SQLite • Pandas • Flask-Mail</p>
+            <div class="flex space-x-6 text-lg">
+              <a href="https://github.com/Narith-hen/test-send-student.git" target="_blank" class="text-yellow hover:underline">GitHub</a>
+              <a href="https://test-send-student.vercel.app/" target="_blank" class="text-blue hover:underline">Live Demo</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW: Testimonials Section -->
+  <section id="testimonials" class="py-24 px-6 bg-slate-900/40 dark:bg-slate-900/40 light:bg-gray-50">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-5xl font-bold text-center mb-20 text-yellow" data-aos="fade-up">What People Say</h2>
+      
+      <div class="grid md:grid-cols-3 gap-10">
+        <!-- Testimonial 1 -->
+        <div class="testimonial-card rounded-2xl p-8 text-center" data-aos="fade-up" data-aos-delay="100">
+          <img src="images/people/image.png" alt="John Doe" class="w-24 h-24 rounded-full mx-auto mb-6 border-4 border-yellow shadow-lg"/>
+          <p class="text-lg italic mb-6 dark:text-gray-300 light:text-gray-700">"Narith is a talented and dedicated developer. He delivered our project on time and exceeded expectations!"</p>
+          <h4 class="font-bold text-yellow text-xl">Mr. Liheang</h4>
+          <p class="text-sm dark:text-gray-400 light:text-gray-600">PNC Student</p>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="testimonial-card rounded-2xl p-8 text-center" data-aos="fade-up" data-aos-delay="200">
+          <img src="images/people/roth.png" alt="Sarah Lee" class="w-24 h-24 rounded-full mx-auto mb-6 border-4 border-yellow shadow-lg"/>
+          <p class="text-lg italic mb-6 dark:text-gray-300 light:text-gray-700">"Working with Narith was a pleasure. His attention to detail and problem-solving skills are outstanding."</p>
+          <h4 class="font-bold text-yellow text-xl">Ms. Sreyroth</h4>
+          <p class="text-sm dark:text-gray-400 light:text-gray-600">PNC Student</p>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="testimonial-card rounded-2xl p-8 text-center" data-aos="fade-up" data-aos-delay="300">
+          <img src="images/people/sreyneang.png" alt="David Kim" class="w-24 h-24 rounded-full mx-auto mb-6 border-4 border-yellow shadow-lg"/>
+          <p class="text-lg italic mb-6 dark:text-gray-300 light:text-gray-700">"Narith learns quickly and brings fresh ideas. He's going to be an amazing full-stack developer!"</p>
+          <h4 class="font-bold text-yellow text-xl">Ms. Sreyneang</h4>
+          <p class="text-sm dark:text-gray-400 light:text-gray-600">Senior Developer</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section id="education" class="py-24 px-6 bg-slate-900/60 dark:bg-slate-900/60 light:bg-gray-100" data-aos="fade-up">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-5xl font-bold mb-16 text-yellow">Education</h2>
+      <img src="images/image.png" alt="PNC Logo" class="w-40 h-40 mx-auto rounded-full border-4 border-yellow shadow-2xl mb-8"/>
+      <h3 class="text-3xl font-bold dark:text-white light:text-gray-900">Passerelles Numeriques Cambodia (PNC)</h3>
+      <p class="text-2xl text-yellow mt-4 font-semibold">Associate Degree</p>
+      <p class="text-xl text-gray-400 dark:text-gray-400 light:text-gray-600">2024 – 2026</p>
+      <p class="text-lg text-gray-300 dark:text-gray-300 light:text-gray-700 mt-8 max-w-2xl mx-auto">
+        Relevant courses: <span class="text-yellow font-semibold">Web Development</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact Form -->
+  <section id="contact" class="py-24 px-6">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-5xl font-bold text-center mb-16 text-yellow" data-aos="fade-up">Get In Touch</h2>
+      <div class="grid md:grid-cols-2 gap-12">
+        <div class="space-y-8" data-aos="fade-right">
+          <div class="flex items-center gap-4">
+            <i class="fas fa-envelope text-4xl text-yellow"></i>
+            <p class="text-lg dark:text-gray-300 light:text-gray-700">narith.hen2025@gmail.com</p>
+          </div>
+          <div class="flex items-center gap-4">
+            <i class="fas fa-phone text-4xl text-yellow"></i>
+            <p class="text-lg dark:text-gray-300 light:text-gray-700">(+855) 97 298 6450</p>
+          </div>
+          <div class="flex items-center gap-4">
+            <i class="fas fa-map-marker-alt text-4xl text-yellow"></i>
+            <p class="text-lg dark:text-gray-300 light:text-gray-700">Phnom Penh, Cambodia</p>
+          </div>
+          <div class="flex gap-8 text-5xl mt-10">
+            <a href="https://www.linkedin.com/in/narith-hen-632a78389/" target="_blank" class="text-blue hover:text-yellow transition">LinkedIn</a>
+            <a href="https://github.com/Narith-hen" target="_blank" class="text-yellow hover:text-blue transition">GitHub</a>
+          </div>
+        </div>
+
+        <div data-aos="fade-left">
+          <form action="https://formspree.io/f/mkneybjp" method="POST" class="space-y-6">
+            <input type="text" name="name" placeholder="Your Name" required class="w-full px-6 py-4 rounded-xl bg-slate-800/70 dark:bg-slate-800/70 light:bg-white/80 border border-gray-700 focus:border-yellow outline-none transition text-lg"/>
+            <input type="email" name="email" placeholder="Your Email" required class="w-full px-6 py-4 rounded-xl bg-slate-800/70 dark:bg-slate-800/70 light:bg-white/80 border border-gray-700 focus:border-yellow outline-none transition text-lg"/>
+            <textarea name="message" rows="6" placeholder="Your Message" required class="w-full px-6 py-4 rounded-xl bg-slate-800/70 dark:bg-slate-800/70 light:bg-white/80 border border-gray-700 focus:border-yellow outline-none transition text-lg resize-none"></textarea>
+            <button type="submit" class="w-full bg-yellow text-black font-bold py-4 rounded-xl hover:bg-opacity-90 transition text-lg shadow-lg transform hover:scale-105">
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-10 text-center border-t border-gray-800 dark:border-gray-800 light:border-gray-300">
+    <p class="text-gray-400 dark:text-gray-400 light:text-gray-600">© 2025 Narith Hen. Made with <span class="text-yellow">Love</span> in Phnom Penh</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 900, easing: 'ease-out-cubic', once: true, offset: 80 });
+  </script>
+
+  <!-- Typing Animation -->
+  <script>
+    const texts = ["Junior Web Developer","Full-Stack Enthusiast","HTML • CSS • JavaScript","Python & Flask Developer","Building the future..."];
+    let count = 0, index = 0;
+    function type() {
+      if (count === texts.length) count = 0;
+      let currentText = texts[count];
+      let letter = currentText.slice(0, ++index);
+      document.getElementById('typing-text').textContent = letter;
+      if (index === currentText.length) {
+        setTimeout(() => { index = 0; count++; setTimeout(type, 500); }, 2000);
+      } else setTimeout(type, 100);
+    }
+    window.addEventListener('load', () => setTimeout(type, 800));
+  </script>
+
+  <!-- Theme + Form Success -->
+  <script>
+    function toggleTheme() {
+      const body = document.body;
+      const toggleBtn = document.getElementById('theme-toggle');
+      const icon = toggleBtn.querySelector('i');
+      if (body.classList.contains('dark')) {
+        body.classList.remove('dark'); body.classList.add('light');
+        icon.classList.replace('fa-moon', 'fa-sun');
+        localStorage.setItem('theme', 'light');
+      } else {
+        body.classList.remove('light'); body.classList.add('dark');
+        icon.classList.replace('fa-sun', 'fa-moon');
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+
+    window.onload = function() {
+      const saved = localStorage.getItem('theme');
+      if (saved === 'light') {
+        document.body.classList.remove('dark'); document.body.classList.add('light');
+        document.getElementById('theme-toggle').querySelector('i').classList.replace('fa-moon', 'fa-sun');
+      }
+      setTimeout(type, 800);
+    }
+
+    if (window.location.search.includes('success')) {
+      document.getElementById('success-message').classList.add('show');
+      setTimeout(() => document.getElementById('success-message').classList.remove('show'), 5000);
+    }
+  </script>
+</body>
+</html>
