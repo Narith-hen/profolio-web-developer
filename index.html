@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -17,38 +17,96 @@
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
   <style>
-    body { font-family: 'Montserrat', sans-serif; background: linear-gradient(135deg, #0f172a 0%, #1e293b 70%); color: #e2e8f0; scroll-behavior: smooth; transition: all 0.5s ease; }
-    .dark { background: linear-gradient(135deg, #0f172a 0%, #1e293b 70%); color: #e2e8f0; }
-    .light { background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 70%); color: #1e293b; }
-    .text-yellow { color: #FDB827; }
-    .text-blue { color: #21209C; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #f8fafc;
+      color: #636363;
+      scroll-behavior: smooth;
+      transition: all 0.5s ease;
+    }
+    .dark, .light { background: #f8fafc; color: #636363; }
+    h1, h2, h3, h4, p, a, li, span, label, input, textarea, button {
+      color: #636363 !important;
+    }
+    input::placeholder, textarea::placeholder {
+      color: #636363;
+    }
+    .text-yellow { color: #636363 !important; }
+    .text-blue { color: #636363 !important; }
+    .bg-yellow { background: #636363 !important; }
+    .border-yellow { border-color: #636363 !important; }
+    .focus\:border-yellow:focus { border-color: #636363 !important; }
+    .hover\:bg-yellow:hover { background: #636363 !important; }
+    .hover\:text-black:hover { color: #000000 !important; }
+    .hover\:text-blue:hover { color: #636363 !important; }
+    .hover\:text-yellow:hover { color: #636363 !important; }
+    .hover\:shadow-yellow\/20:hover { box-shadow: 0 20px 45px rgba(99, 99, 99, 0.18); }
+    .btn-filled {
+      color: #ffffff !important;
+    }
+    .btn-outline {
+      color: #636363 !important;
+      background: #ffffff !important;
+    }
+    .btn-outline:hover {
+      color: #ffffff !important;
+      background: #636363 !important;
+    }
+
+    nav {
+      background: rgba(255, 255, 255, 0.96) !important;
+      border-color: #e5e7eb !important;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+    }
+
+    section {
+      scroll-margin-top: 96px;
+    }
+
+    .bg-slate-900\/60,
+    .bg-slate-900\/40 {
+      background: #eef2ff !important;
+    }
+
+    .bg-slate-800\/80,
+    .testimonial-card {
+      background: #ffffff !important;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+    }
+
+    input,
+    textarea {
+      background: #ffffff !important;
+      border-color: #cbd5e1 !important;
+    }
 
     ::-webkit-scrollbar { width: 10px; }
-    ::-webkit-scrollbar-track { background: #1e293b; }
-    ::-webkit-scrollbar-thumb { background: #FDB827; border-radius: 10px; }
+    ::-webkit-scrollbar-track { background: #ffffff; }
+    ::-webkit-scrollbar-thumb { background: #636363; border-radius: 10px; }
     .light ::-webkit-scrollbar-track { background: #cbd5e1; }
 
     .nav-link::after {
       content: ''; position: absolute; width: 0; height: 3px; bottom: -8px; left: 50%;
-      background: #FDB827; transition: all 0.4s ease; transform: translateX(-50%);
+      background: #636363; transition: all 0.4s ease; transform: translateX(-50%);
     }
     .nav-link:hover::after { width: 100%; }
 
     .btn-primary { animation: pulse 2s infinite; }
-    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(253, 184, 39, 0.7); } 70% { box-shadow: 0 0 0 12px rgba(253, 184, 39, 0); } 100% { box-shadow: 0 0 0 0 rgba(253, 184, 39, 0); } }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(99, 99, 99, 0.35); } 70% { box-shadow: 0 0 0 12px rgba(99, 99, 99, 0); } 100% { box-shadow: 0 0 0 0 rgba(99, 99, 99, 0); } }
 
-    @keyframes blink { 0%, 100% { border-color: transparent; } 50% { border-color: #FDB827; } }
-    .cursor { border-right: 4px solid #FDB827; animation: blink 0.7s infinite; }
+    @keyframes blink { 0%, 100% { border-color: transparent; } 50% { border-color: #636363; } }
+    .cursor { border-right: 4px solid #636363; animation: blink 0.7s infinite; }
 
     #theme-toggle {
       position: fixed; top: 16px; right: 16px; z-index: 1000;
-      background: rgba(30, 41, 59, 0.9); backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
       width: 52px; height: 52px; border-radius: 50%; display: flex;
       align-items: center; justify-content: center; cursor: pointer;
-      transition: all 0.4s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      transition: all 0.4s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.12);
     }
-    #theme-toggle:hover { transform: scale(1.1); background: #FDB827; }
-    #theme-toggle i { font-size: 24px; color: #FDB827; transition: all 0.4s ease; }
+    #theme-toggle:hover { transform: scale(1.1); background: #636363; }
+    #theme-toggle i { font-size: 24px; color: #636363; transition: all 0.4s ease; }
     .light #theme-toggle { background: rgba(248, 250, 252, 0.9); }
     .light #theme-toggle i { color: #1e293b; }
 
@@ -60,18 +118,16 @@
     }
     #success-message.show { opacity: 1; top: 80px; }
 
-    .testimonial-card {
-      background: rgba(30, 41, 59, 0.6);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(253, 184, 39, 0.3);
+    #mobile-menu {
+      background: rgba(255, 255, 255, 0.98) !important;
     }
-    .light .testimonial-card {
-      background: rgba(255, 255, 255, 0.8);
-      border: 1px solid rgba(253, 184, 39, 0.4);
+
+    #blueHideText {
+      color: #9e9696 !important;
     }
   </style>
 </head>
-<body class="min-h-screen dark">
+<body class="min-h-screen light">
 
   <!-- Theme Toggle -->
   <div id="theme-toggle" onclick="toggleTheme()">
@@ -92,7 +148,7 @@
         <a href="#about" class="nav-link relative dark:hover:text-yellow light:hover:text-yellow transition">About</a>
         <a href="#skills" class="nav-link relative dark:hover:text-yellow light:hover:text-yellow transition">Skills</a>
         <a href="#projects" class="nav-link relative dark:hover:text-yellow light:hover:text-yellow transition">Projects</a>
-        <a href="#testimonials" class="nav-link relative dark:hover:text-yellow light:hover:text-yellow transition">Testimonials</a>
+        <a href="#testimonials" class="nav-link relative dark:hover:text-yellow light:hover:text-yellow transition">Achievement</a>
         <a href="#education" class="nav-link relative dark:hover:text-yellow light:hover:text-yellow transition">Education</a>
         <a href="#contact" class="nav-link relative dark:hover:text-yellow light:hover:text-yellow transition">Contact</a>
       </div>
@@ -109,7 +165,7 @@
       <a href="#about" class="hover:text-yellow transition">About</a>
       <a href="#skills" class="hover:text-yellow transition">Skills</a>
       <a href="#projects" class="hover:text-yellow transition">Projects</a>
-      <a href="#testimonials" class="hover:text-yellow transition">Testimonials</a>
+      <a href="#testimonials" class="hover:text-yellow transition">Achievement</a>
       <a href="#education" class="hover:text-yellow transition">Education</a>
       <a href="#contact" class="hover:text-yellow transition">Contact</a>
     </div>
@@ -129,8 +185,8 @@
         I am a web developer who enjoys building both the <span class="text-yellow">front-end</span> and <span class="text-blue">back-end</span> of websites.
       </p>
       <div class="flex flex-col sm:flex-row gap-6 justify-center mt-12" data-aos="fade-up" data-aos-delay="1100">
-        <a href="#projects" class="bg-yellow text-black font-bold py-4 px-10 rounded-full hover:bg-opacity-90 transition text-lg btn-primary shadow-lg">My Projects</a>
-        <a href="#contact" class="border-2 border-yellow text-yellow font-bold py-4 px-10 rounded-full hover:bg-yellow hover:text-black transition text-lg shadow-lg">Hire Me</a>
+        <a href="#projects" class="bg-yellow btn-filled font-bold py-4 px-10 rounded-full hover:bg-opacity-90 transition text-lg btn-primary shadow-lg">My Projects</a>
+        <a href="#contact" class="border-2 border-yellow btn-outline font-bold py-4 px-10 rounded-full transition text-lg shadow-lg">Hire Me</a>
       </div>
     </div>
   </section>
@@ -140,8 +196,8 @@
     <div class="max-w-6xl mx-auto">
       <h2 class="text-4xl sm:text-5xl font-bold text-center mb-16 text-yellow">About Me</h2>
       <div class="grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
-        <div data-aos="fade-right">
-          <img src="images/profile-about.jpg" alt="My Profile" class="rounded-2xl shadow-2xl w-full"/>
+        <div class="max-w-md mx-auto w-full" data-aos="fade-right">
+          <img src="images/profile-about.jpg" alt="My Profile" class="rounded-2xl shadow-2xl w-full h-[420px] md:h-[520px] object-cover object-center"/>
         </div>
         <div class="text-lg leading-8 text-gray-300" data-aos="fade-left">
           <p class="mb-6">
@@ -166,22 +222,22 @@
         <div class="text-center" data-aos="zoom-in" data-aos-delay="100">
           <i class="fa-solid fa-palette text-6xl sm:text-7xl mb-4 text-yellow transition-all duration-300 hover:scale-125"></i>
           <h3 class="text-xl sm:text-2xl font-bold">Frontend</h3>
-          <p class="text-sm sm:text-base text-gray-400 mt-3">HTML, CSS, SASS, JavaScript</p>
+          <p class="text-sm sm:text-base text-gray-400 mt-3">HTML, CSS, SASS, JavaScript, React.js</p>
         </div>
         <div class="text-center" data-aos="zoom-in" data-aos-delay="200">
           <i class="fa-solid fa-server text-6xl sm:text-7xl mb-4 text-blue transition-all duration-300 hover:scale-125"></i>
           <h3 class="text-xl sm:text-2xl font-bold">Backend</h3>
-          <p class="text-sm sm:text-base text-gray-400 mt-3">Python, Flask, SQLite, MySQL</p>
+          <p class="text-sm sm:text-base text-gray-400 mt-3">Python, Flask, Node.js, Java(Basic), MySQL</p>
         </div>
         <div class="text-center" data-aos="zoom-in" data-aos-delay="300">
           <i class="fa-solid fa-wrench text-6xl sm:text-7xl mb-4 text-yellow transition-all duration-300 hover:scale-125"></i>
           <h3 class="text-xl sm:text-2xl font-bold">Tools</h3>
-          <p class="text-sm sm:text-base text-gray-400 mt-3">Git, GitHub, Figma, Canva, VS Code</p>
+          <p class="text-sm sm:text-base text-gray-400 mt-3">Git, GitHub, Figma, JIRA, Vercel</p>
         </div>
         <div class="text-center" data-aos="zoom-in" data-aos-delay="400">
           <i class="fa-solid fa-user-friends text-6xl sm:text-7xl mb-4 text-blue transition-all duration-300 hover:scale-125"></i>
           <h3 class="text-xl sm:text-2xl font-bold">Soft Skills</h3>
-          <p class="text-sm sm:text-base text-gray-400 mt-3">Teamwork, Communication<br>Problem-solving, Time Management</p>
+          <p class="text-sm sm:text-base text-gray-400 mt-3">Teamwork, Communication, Problem-solving, Time Management, Leadership</p>
         </div>
       </div>
     </div>
@@ -192,15 +248,53 @@
     <div class="max-w-7xl mx-auto">
       <h2 class="text-4xl sm:text-5xl font-bold text-center mb-16 text-yellow" data-aos="fade-up">Projects</h2>
       <div class="grid gap-12 md:grid-cols-2">
+
+        <!-- Service Cleaning App -->
+        <div class="bg-slate-800/80 rounded-2xl overflow-hidden shadow-2xl hover:shadow-yellow/20 transition-all duration-500" data-aos="flip-left">
+          <img src="images/somaet.png" alt="Travel Destination" class="w-full h-56 sm:h-64 object-cover"/>
+          <div class="p-6 sm:p-8">
+            <h3 class="text-2xl sm:text-3xl font-bold text-yellow mb-3">Service Cleaning App</h3>
+            <p class="mb-4">
+              សម្អាត - Samaeat is an on-demand cleaning service booking platform that connects customers with nearby cleaning teams.
+            </p>
+            <div class="more-text hidden mb-4">
+              <p class="mb-3">
+                Customers can request cleaning for homes, shops, offices, banners, and other places. They describe what needs cleaning, choose the service type, and nearby cleaning teams can offer a price.
+              </p>
+              <p>
+                Both sides can negotiate and confirm the service digitally, making it easier to find trusted cleaners without calling multiple companies.
+              </p>
+            </div>
+            <button type="button" class="show-more-btn text-yellow mb-6 hover:underline" id="blueHideText">
+              Show more...
+            </button>
+            <p class="text-sm text-gray-500 mb-4">HTML &bull; CSS &bull; SASS &bull; Figma</p>
+            <div class="flex flex-wrap gap-6 text-lg">
+              <!-- <a href="https://github.com/Narith-hen/project-travel-destination.git" target="_blank" class="text-yellow hover:underline">GitHub</a> -->
+              <a href="https://somaet.website/" target="_blank" class="text-blue hover:underline" style="color: blue !important;">Live Demo</a>
+            </div>
+            <div class="mt-8 text-sm">
+              <p class="font-semibold text-yellow mb-2">What I Learned:</p>
+              <ul class="list-disc list-inside space-y-1 text-gray-400">
+                <li>Developed a full-stack cleaning service application for booking home and office services</li>
+                <li>Built frontend using React and backend APIs using Node.js</li>
+                <li>Managed team workflow as Scrum Master using JIRA</li>
+                <li>Collaborated with team members to deliver the project on time</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Travel destination -->
         <div class="bg-slate-800/80 rounded-2xl overflow-hidden shadow-2xl hover:shadow-yellow/20 transition-all duration-500" data-aos="flip-left">
           <img src="images/travel-preview.jpg" alt="Travel Destination" class="w-full h-56 sm:h-64 object-cover"/>
           <div class="p-6 sm:p-8">
             <h3 class="text-2xl sm:text-3xl font-bold text-yellow mb-3">Travel Destination</h3>
             <p class="mb-6">A website that gives customers a sense of adventure with their travels...</p>
-            <p class="text-sm text-gray-500 mb-4">HTML • CSS • SASS • Figma</p>
+            <p class="text-sm text-gray-500 mb-4">HTML &bull; CSS &bull; SASS &bull; Figma</p>
             <div class="flex flex-wrap gap-6 text-lg">
-              <a href="https://github.com/Narith-hen/project-travel-destination.git" target="_blank" class="text-yellow hover:underline">GitHub</a>
-              <a href="https://project-travel-destination.vercel.app/index.html" target="_blank" class="text-blue hover:underline">Live Demo</a>
+              <!-- <a href="https://github.com/Narith-hen/project-travel-destination.git" target="_blank" class="text-yellow hover:underline">GitHub</a> -->
+              <a href="https://project-travel-destination.vercel.app/index.html" target="_blank" class="text-blue hover:underline" style="color: blue !important;">Live Demo</a>
             </div>
             <div class="mt-8 text-sm">
               <p class="font-semibold text-yellow mb-2">What I Learned:</p>
@@ -213,44 +307,49 @@
           </div>
         </div>
 
-        <div class="bg-slate-800/80 rounded-2xl overflow-hidden shadow-2xl hover:shadow-yellow/20 transition-all duration-500" data-aos="flip-right">
-          <img src="images/student-preview.jpg" alt="Student Results System" class="w-full h-56 sm:h-64 object-cover"/>
-          <div class="p-6 sm:p-8">
-            <h3 class="text-2xl sm:text-3xl font-bold text-yellow mb-3">System Send Student Results</h3>
-            <p class="mb-6">A professional web application for teachers...</p>
-            <p class="text-sm text-gray-500 mb-4">Python • Flask • Tailwind • SQLite • Pandas • Flask-Mail</p>
-            <div class="flex flex-wrap gap-6 text-lg">
-              <a href="https://github.com/Narith-hen/test-send-student.git" target="_blank" class="text-yellow hover:underline">GitHub</a>
-              <a href="https://test-send-student.vercel.app/" target="_blank" class="text-blue hover:underline">Live Demo</a>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
 
-  <!-- Testimonials -->
+  <!-- Achievement -->
   <section id="testimonials" class="py-20 px-4 bg-slate-900/40">
     <div class="max-w-6xl mx-auto">
-      <h2 class="text-4xl sm:text-5xl font-bold text-center mb-16 text-yellow" data-aos="fade-up">What People Say</h2>
-      <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
-        <div class="testimonial-card rounded-2xl p-8 text-center" data-aos="fade-up" data-aos-delay="100">
-          <img src="images/people/image.png" alt="John Doe" class="w-24 h-24 rounded-full mx-auto mb-6 border-4 border-yellow shadow-lg"/>
-          <p class="text-lg italic mb-6">"Narith is a talented and dedicated developer. He delivered our project on time and exceeded expectations!"</p>
-          <h4 class="font-bold text-yellow text-xl">Mr. Liheang</h4>
-          <p class="text-sm">PNC Student</p>
+      <div class="text-center max-w-3xl mx-auto mb-14" data-aos="fade-up">
+        <h2 class="text-4xl sm:text-5xl font-bold text-yellow">Achievement</h2>
+        <p class="text-lg sm:text-xl mt-5 leading-8">
+          A few of my progress, leadership, and project experience as a web developer.
+        </p>
+      </div>
+
+      <div class="grid gap-8 md:grid-cols-3">
+        <div class="testimonial-card rounded-2xl p-8" data-aos="fade-up" data-aos-delay="100">
+          <div class="w-14 h-14 rounded-full bg-yellow flex items-center justify-center mb-6">
+            <i class="fas fa-code text-2xl text-white"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-yellow mb-4">Built Real Projects</h3>
+          <p class="text-lg leading-8">
+            Completed portfolio, travel, and service booking projects using HTML, CSS, SASS, JavaScript, Python, and Flask.
+          </p>
         </div>
-        <div class="testimonial-card rounded-2xl p-8 text-center" data-aos="fade-up" data-aos-delay="200">
-          <img src="images/people/roth.png" alt="Sarah Lee" class="w-24 h-24 rounded-full mx-auto mb-6 border-4 border-yellow shadow-lg"/>
-          <p class="text-lg italic mb-6">"Working with Narith was a pleasure. His attention to detail and problem-solving skills are outstanding."</p>
-          <h4 class="font-bold text-yellow text-xl">Ms. Sreyroth</h4>
-          <p class="text-sm">PNC Student</p>
+
+        <div class="testimonial-card rounded-2xl p-8" data-aos="fade-up" data-aos-delay="200">
+          <div class="w-14 h-14 rounded-full bg-yellow flex items-center justify-center mb-6">
+            <i class="fas fa-user-tie text-2xl text-white"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-yellow mb-4">Led As Scrum Master</h3>
+          <p class="text-lg leading-8">
+            Guided team workflow with JIRA, helped organize tasks, supported teammates, and kept project progress clear.
+          </p>
         </div>
-        <div class="testimonial-card rounded-2xl p-8 text-center" data-aos="fade-up" data-aos-delay="300">
-          <img src="images/people/image copy.png" alt="David Kim" class="w-24 h-24 rounded-full mx-auto mb-6 border-4 border-yellow shadow-lg"/>
-          <p class="text-lg italic mb-6">"Narith learns quickly and brings fresh ideas. He's going to be an amazing full-stack developer!"</p>
-          <h4 class="font-bold text-yellow text-xl">Ms. Sinat</h4>
-          <p class="text-sm">PNC Student</p>
+
+        <div class="testimonial-card rounded-2xl p-8" data-aos="fade-up" data-aos-delay="300">
+          <div class="w-14 h-14 rounded-full bg-yellow flex items-center justify-center mb-6">
+            <i class="fas fa-graduation-cap text-2xl text-white"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-yellow mb-4">Growing Developer Skills</h3>
+          <p class="text-lg leading-8">
+            Improved problem solving, folder structure, teamwork, and confidence through hands-on web development practice.
+          </p>
         </div>
       </div>
     </div>
@@ -262,8 +361,8 @@
       <h2 class="text-4xl sm:text-5xl font-bold mb-16 text-yellow">Education</h2>
       <img src="images/image.png" alt="PNC Logo" class="w-40 h-40 mx-auto rounded-full border-4 border-yellow shadow-2xl mb-8"/>
       <h3 class="text-3xl font-bold">Passerelles Numeriques Cambodia (PNC)</h3>
-      <p class="text-2xl text-yellow mt-4 font-semibold">Associate Degree</p>
-      <p class="text-xl text-gray-400">2024 – 2026</p>
+      <p class="text-2xl text-yellow mt-4 font-semibold">Pursuing Associate degree</p>
+      <p class="text-xl text-gray-400">2025 - Present</p>
       <p class="text-lg text-gray-300 mt-8 max-w-2xl mx-auto">
         Relevant courses: <span class="text-yellow font-semibold">Web Development</span>
       </p>
@@ -272,45 +371,48 @@
 
   <!-- Contact Form -->
   <section id="contact" class="py-20 px-4">
-    <div class="max-w-5xl mx-auto">
-      <h2 class="text-4xl sm:text-5xl font-bold text-center mb-16 text-yellow" data-aos="fade-up">Get In Touch</h2>
-      <div class="grid md:grid-cols-2 gap-12">
-        <div class="space-y-8" data-aos="fade-right">
-          <div class="flex items-center gap-4">
-            <i class="fas fa-envelope text-4xl text-yellow"></i>
-            <p class="text-lg">narith.hen2025@gmail.com</p>
-          </div>
-          <div class="flex items-center gap-4">
-            <i class="fas fa-phone text-4xl text-yellow"></i>
-            <p class="text-lg">(+855) 97 298 6450</p>
-          </div>
-          <div class="flex items-center gap-4">
-            <i class="fas fa-map-marker-alt text-4xl text-yellow"></i>
-            <p class="text-lg">Phnom Penh, Cambodia</p>
-          </div>
-          <div class="flex gap-8 text-5xl mt-10">
-            <a href="https://www.linkedin.com/in/narith-hen-632a78389/" target="_blank" class="text-blue hover:text-yellow transition">LinkedIn</a>
-            <a href="https://github.com/Narith-hen" target="_blank" class="text-yellow hover:text-blue transition">GitHub</a>
-          </div>
-        </div>
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-14" data-aos="fade-up">
+        <h2 class="text-4xl sm:text-5xl font-bold text-yellow">Get In Touch</h2>
+        <p class="text-lg sm:text-xl mt-5 leading-8">
+          Have a project, internship opportunity, or collaboration in mind? I would be happy to hear from you.
+        </p>
+      </div>
 
-        <div data-aos="fade-left">
-          <form action="https://formspree.io/f/mkneybjp" method="POST" class="space-y-6">
-            <input type="text" name="name" placeholder="Your Name" required class="w-full px-6 py-4 rounded-xl bg-slate-800/70 border border-gray-700 focus:border-yellow outline-none transition text-lg"/>
-            <input type="email" name="email" placeholder="Your Email" required class="w-full px-6 py-4 rounded-xl bg-slate-800/70 border border-gray-700 focus:border-yellow outline-none transition text-lg"/>
-            <textarea name="message" rows="6" placeholder="Your Message" required class="w-full px-6 py-4 rounded-xl bg-slate-800/70 border border-gray-700 focus:border-yellow outline-none transition text-lg resize-none"></textarea>
-            <button type="submit" class="w-full bg-yellow text-black font-bold py-4 rounded-xl hover:bg-opacity-90 transition text-lg shadow-lg">
-              Send Message
-            </button>
-          </form>
+      <div class="grid gap-6 md:grid-cols-3" data-aos="fade-up" data-aos-delay="100">
+        <a href="mailto:narith.hen2025@gmail.com" class="bg-slate-800/80 rounded-2xl p-8 text-center shadow-2xl hover:shadow-yellow/20 transition-all duration-300">
+          <i class="fas fa-envelope text-4xl text-yellow mb-5"></i>
+          <h3 class="text-xl font-bold mb-3">Email</h3>
+          <p class="text-base break-words">narith.hen2025@gmail.com</p>
+        </a>
+
+        <a href="tel:+855972986450" class="bg-slate-800/80 rounded-2xl p-8 text-center shadow-2xl hover:shadow-yellow/20 transition-all duration-300">
+          <i class="fas fa-phone text-4xl text-yellow mb-5"></i>
+          <h3 class="text-xl font-bold mb-3">Phone</h3>
+          <p class="text-base">(+855) 97 298 6450</p>
+        </a>
+
+        <div class="bg-slate-800/80 rounded-2xl p-8 text-center shadow-2xl hover:shadow-yellow/20 transition-all duration-300">
+          <i class="fas fa-map-marker-alt text-4xl text-yellow mb-5"></i>
+          <h3 class="text-xl font-bold mb-3">Location</h3>
+          <p class="text-base">Phnom Penh, Cambodia</p>
         </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row justify-center gap-5 mt-10" data-aos="fade-up" data-aos-delay="200">
+        <a href="https://www.linkedin.com/in/narith-hen-632a78389/" target="_blank" class="border-2 border-yellow btn-outline font-bold py-4 px-8 rounded-full transition text-lg shadow-lg text-center">
+          <i class="fab fa-linkedin mr-2"></i>LinkedIn
+        </a>
+        <a href="https://github.com/Narith-hen" target="_blank" class="bg-yellow btn-filled font-bold py-4 px-8 rounded-full hover:bg-opacity-90 transition text-lg shadow-lg text-center">
+          <i class="fab fa-github mr-2"></i>GitHub
+        </a>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
   <footer class="py-10 text-center border-t border-gray-800">
-    <p class="text-gray-400">© 2025 Narith Hen. Made with <span class="text-yellow">Love</span> in Phnom Penh</p>
+    <p class="text-gray-400">&copy; 2025 Narith Hen.</p>
   </footer>
 
   <!-- Scripts -->
@@ -318,7 +420,7 @@
   <script>
     AOS.init({ duration: 900, easing: 'ease-out-cubic', once: true, offset: 80 });
 
-    const texts = ["Junior Web Developer","Full-Stack Enthusiast","HTML • CSS • JavaScript","Python & Flask Developer","Building the future..."];
+    const texts = ["Junior Web Developer","Full-Stack Enthusiast","HTML - CSS - JavaScript","Python & Flask Developer","Building the future..."];
     let count = 0, index = 0;
     function type() {
       if (count === texts.length) count = 0;
@@ -356,7 +458,25 @@
 
     // Mobile menu toggle
     document.getElementById('mobile-toggle').addEventListener('click', () => {
-      document.getElementById('mobile-menu').classList.toggle('hidden');
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+      menu.classList.toggle('flex');
+    });
+
+    document.querySelectorAll('#mobile-menu a').forEach((link) => {
+      link.addEventListener('click', () => {
+        const menu = document.getElementById('mobile-menu');
+        menu.classList.add('hidden');
+        menu.classList.remove('flex');
+      });
+    });
+
+    document.querySelectorAll('.show-more-btn').forEach((button) => {
+      button.addEventListener('click', () => {
+        const moreText = button.previousElementSibling;
+        moreText.classList.toggle('hidden');
+        button.textContent = moreText.classList.contains('hidden') ? 'Show more' : 'Show less';
+      });
     });
 
     if (window.location.search.includes('success')) {
