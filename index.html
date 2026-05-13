@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" class="light">
 <head>
   <meta charset="UTF-8" />
@@ -15,128 +15,41 @@
 
   <!-- AOS Animation -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-  <style>
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background: #f8fafc;
-      color: #636363;
-      scroll-behavior: smooth;
-      transition: all 0.5s ease;
-    }
-    .dark, .light { background: #f8fafc; color: #636363; }
-    h1, h2, h3, h4, p, a, li, span, label, input, textarea, button {
-      color: #636363 !important;
-    }
-    input::placeholder, textarea::placeholder {
-      color: #636363;
-    }
-    .text-yellow { color: #636363 !important; }
-    .text-blue { color: #636363 !important; }
-    .bg-yellow { background: #636363 !important; }
-    .border-yellow { border-color: #636363 !important; }
-    .focus\:border-yellow:focus { border-color: #636363 !important; }
-    .hover\:bg-yellow:hover { background: #636363 !important; }
-    .hover\:text-black:hover { color: #000000 !important; }
-    .hover\:text-blue:hover { color: #636363 !important; }
-    .hover\:text-yellow:hover { color: #636363 !important; }
-    .hover\:shadow-yellow\/20:hover { box-shadow: 0 20px 45px rgba(99, 99, 99, 0.18); }
-    .btn-filled {
-      color: #ffffff !important;
-    }
-    .btn-outline {
-      color: #636363 !important;
-      background: #ffffff !important;
-    }
-    .btn-outline:hover {
-      color: #ffffff !important;
-      background: #636363 !important;
-    }
-
-    nav {
-      background: rgba(255, 255, 255, 0.96) !important;
-      border-color: #e5e7eb !important;
-      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
-    }
-
-    section {
-      scroll-margin-top: 96px;
-    }
-
-    .bg-slate-900\/60,
-    .bg-slate-900\/40 {
-      background: #eef2ff !important;
-    }
-
-    .bg-slate-800\/80,
-    .testimonial-card {
-      background: #ffffff !important;
-      border: 1px solid #e5e7eb;
-      box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
-    }
-
-    input,
-    textarea {
-      background: #ffffff !important;
-      border-color: #cbd5e1 !important;
-    }
-
-    ::-webkit-scrollbar { width: 10px; }
-    ::-webkit-scrollbar-track { background: #ffffff; }
-    ::-webkit-scrollbar-thumb { background: #636363; border-radius: 10px; }
-    .light ::-webkit-scrollbar-track { background: #cbd5e1; }
-
-    .nav-link::after {
-      content: ''; position: absolute; width: 0; height: 3px; bottom: -8px; left: 50%;
-      background: #636363; transition: all 0.4s ease; transform: translateX(-50%);
-    }
-    .nav-link:hover::after { width: 100%; }
-
-    .btn-primary { animation: pulse 2s infinite; }
-    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(99, 99, 99, 0.35); } 70% { box-shadow: 0 0 0 12px rgba(99, 99, 99, 0); } 100% { box-shadow: 0 0 0 0 rgba(99, 99, 99, 0); } }
-
-    @keyframes blink { 0%, 100% { border-color: transparent; } 50% { border-color: #636363; } }
-    .cursor { border-right: 4px solid #636363; animation: blink 0.7s infinite; }
-
-    #theme-toggle {
-      position: fixed; top: 16px; right: 16px; z-index: 1000;
-      background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
-      width: 52px; height: 52px; border-radius: 50%; display: flex;
-      align-items: center; justify-content: center; cursor: pointer;
-      transition: all 0.4s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.12);
-    }
-    #theme-toggle:hover { transform: scale(1.1); background: #636363; }
-    #theme-toggle i { font-size: 24px; color: #636363; transition: all 0.4s ease; }
-    .light #theme-toggle { background: rgba(248, 250, 252, 0.9); }
-    .light #theme-toggle i { color: #1e293b; }
-
-    #success-message {
-      position: fixed; top: 100px; left: 50%; transform: translateX(-50%);
-      background: #10b981; color: white; padding: 1rem 2rem; border-radius: 50px;
-      z-index: 9999; opacity: 0; transition: all 0.5s ease;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    }
-    #success-message.show { opacity: 1; top: 80px; }
-
-    #mobile-menu {
-      background: rgba(255, 255, 255, 0.98) !important;
-    }
-
-    #blueHideText {
-      color: #9e9696 !important;
-    }
-  </style>
+  <link rel="stylesheet" href="assets/css/styles.css"/>
 </head>
 <body class="min-h-screen light">
 
   <!-- Theme Toggle -->
-  <div id="theme-toggle" onclick="toggleTheme()">
+  <div id="theme-toggle">
     <i class="fas fa-moon"></i>
   </div>
 
   <!-- Success Message -->
   <div id="success-message">Thank you! Your message has been sent</div>
-
+<!-- Activity Detail Modal -->
+  <div id="activity-modal" aria-hidden="true">
+    <div id="activity-modal-card" role="dialog" aria-modal="true" aria-labelledby="activity-modal-title">
+      <button type="button" id="activity-modal-close" class="w-11 h-11 shrink-0 rounded-full border-2 border-yellow btn-outline flex items-center justify-center" aria-label="Close activity detail">
+        <i class="fas fa-times"></i>
+      </button>
+      <img id="activity-modal-image" src="" alt=""/>
+      <div id="activity-modal-gallery" aria-label="Activity images"></div>
+      <div class="p-6 sm:p-8">
+        <div class="flex items-start justify-between gap-5 mb-5">
+          <div>
+            <p id="activity-modal-category" class="text-sm font-semibold text-yellow mb-2"></p>
+            <h3 id="activity-modal-title" class="text-3xl font-bold text-yellow"></h3>
+            <div id="activity-modal-meta" class="activity-modal-meta">
+              <p id="activity-modal-location"></p>
+              <p id="activity-modal-timeline"></p>
+            </div>
+          </div>
+        </div>
+        <p id="activity-modal-description" class="text-lg leading-8"></p>
+      </div>
+    </div>
+  </div>
+  
   <!-- Navigation -->
   <nav class="fixed top-0 w-full bg-slate-900/95 backdrop-blur-lg z-50 border-b border-gray-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex justify-between items-center">
@@ -150,6 +63,8 @@
         <a href="#projects" class="nav-link relative dark:hover:text-yellow light:hover:text-yellow transition">Projects</a>
         <a href="#testimonials" class="nav-link relative dark:hover:text-yellow light:hover:text-yellow transition">Achievement</a>
         <a href="#education" class="nav-link relative dark:hover:text-yellow light:hover:text-yellow transition">Education</a>
+        <a href="#activity" class="nav-link relative dark:hover:text-yellow light:hover:text-yellow transition">Activity</a>
+        <a href="#references" class="nav-link relative dark:hover:text-yellow light:hover:text-yellow transition">References</a>
         <a href="#contact" class="nav-link relative dark:hover:text-yellow light:hover:text-yellow transition">Contact</a>
       </div>
 
@@ -167,6 +82,8 @@
       <a href="#projects" class="hover:text-yellow transition">Projects</a>
       <a href="#testimonials" class="hover:text-yellow transition">Achievement</a>
       <a href="#education" class="hover:text-yellow transition">Education</a>
+      <a href="#activity" class="hover:text-yellow transition">Activity</a>
+      <a href="#references" class="hover:text-yellow transition">References</a>
       <a href="#contact" class="hover:text-yellow transition">Contact</a>
     </div>
   </nav>
@@ -174,7 +91,7 @@
   <!-- Hero Section -->
   <section id="home" class="min-h-screen flex items-center justify-center px-4 pt-20">
     <div class="text-center max-w-5xl" data-aos="zoom-in" data-aos-delay="100">
-      <img src="images/profilehead.png" alt="Narith Hen" class="w-44 h-44 sm:w-52 sm:h-52 rounded-full mx-auto mb-8 border-8 border-yellow shadow-2xl object-cover" data-aos="fade-down" data-aos-delay="300"/>
+      <img src="assets/images/profilehead.png" alt="Narith Hen" class="w-44 h-44 sm:w-52 sm:h-52 rounded-full mx-auto mb-8 border-8 border-yellow shadow-2xl object-cover" data-aos="fade-down" data-aos-delay="300"/>
       <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold mb-4" data-aos="fade-up" data-aos-delay="500">
         Hi, I'm <span class="text-yellow">Narith Hen</span>
       </h1>
@@ -190,21 +107,19 @@
       </div>
     </div>
   </section>
-
-  <!-- About Me -->
-  <section id="about" class="py-20 px-4 sm:px-6 lg:px-8">
+<section id="about" class="py-20 px-4 sm:px-6 lg:px-8">
     <div class="max-w-6xl mx-auto">
       <h2 class="text-4xl sm:text-5xl font-bold text-center mb-16 text-yellow">About Me</h2>
       <div class="grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
         <div class="max-w-md mx-auto w-full" data-aos="fade-right">
-          <img src="images/profile-about.jpg" alt="My Profile" class="rounded-2xl shadow-2xl w-full h-[420px] md:h-[520px] object-cover object-center"/>
+          <img src="assets/images/profile-about.jpg" alt="My Profile" class="rounded-2xl shadow-2xl w-full h-[420px] md:h-[520px] object-cover object-center"/>
         </div>
         <div class="text-lg leading-8 text-gray-300" data-aos="fade-left">
           <p class="mb-6">
-            A junior web developer who likes solving problems and learning new skills. I have experience in frontend development and enjoy turning designs into real websites.
+            I am a Web Development student at Passerelles Numeriques Cambodia with skills in React.js, Node.js, and MySQL. I have experience working in team projects using Agile (Scrum) and have taken roles as Scrum Master and Project Manager. I am seeking an internship to apply my technical and problem-solving skills in real-world projects.
           </p>
           <p>
-            I focus on <span class="text-yellow font-semibold">HTML</span>, <span class="text-yellow font-semibold">CSS</span>, <span class="text-yellow font-semibold">SASS</span>, <span class="text-blue font-semibold">Python</span>, and <span class="text-blue font-semibold">MySQL</span>.
+            I focus on <span class="text-yellow font-semibold">ReactJS</span>, <span class="text-yellow font-semibold">CSS</span>, <span class="text-yellow font-semibold">SASS</span>, <span class="text-blue font-semibold">Python</span>, and <span class="text-blue font-semibold">MySQL</span>.
           </p>
           <p class="mt-6">
             Tools I use every day: <span class="text-yellow">Git & GitHub</span>, <span class="text-yellow">VS Code</span>, <span class="text-yellow">Figma</span>, and <span class="text-yellow">Canva</span>.
@@ -214,8 +129,7 @@
     </div>
   </section>
 
-  <!-- Skills -->
-  <section id="skills" class="py-20 px-4 bg-slate-900/60">
+<section id="skills" class="py-20 px-4 bg-slate-900/60">
     <div class="max-w-7xl mx-auto">
       <h2 class="text-4xl sm:text-5xl font-bold text-center mb-16 text-yellow" data-aos="fade-up">Skills</h2>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12">
@@ -243,19 +157,18 @@
     </div>
   </section>
 
-  <!-- Projects -->
-  <section id="projects" class="py-20 px-4">
+<section id="projects" class="py-20 px-4">
     <div class="max-w-7xl mx-auto">
       <h2 class="text-4xl sm:text-5xl font-bold text-center mb-16 text-yellow" data-aos="fade-up">Projects</h2>
       <div class="grid gap-12 md:grid-cols-2">
 
         <!-- Service Cleaning App -->
         <div class="bg-slate-800/80 rounded-2xl overflow-hidden shadow-2xl hover:shadow-yellow/20 transition-all duration-500" data-aos="flip-left">
-          <img src="images/somaet.png" alt="Travel Destination" class="w-full h-56 sm:h-64 object-cover"/>
+          <img src="assets/images/somaet.png" alt="Travel Destination" class="w-full h-56 sm:h-64 object-cover"/>
           <div class="p-6 sm:p-8">
             <h3 class="text-2xl sm:text-3xl font-bold text-yellow mb-3">Service Cleaning App</h3>
             <p class="mb-4">
-              សម្អាត - Samaeat is an on-demand cleaning service booking platform that connects customers with nearby cleaning teams.
+              Samaeat is an on-demand cleaning service booking platform that connects customers with nearby cleaning teams.
             </p>
             <div class="more-text hidden mb-4">
               <p class="mb-3">
@@ -271,7 +184,7 @@
             <p class="text-sm text-gray-500 mb-4">React.js &bull; Node.js &bull; Redis &bull; MySQL &bull; Socket.io</p>
             <div class="flex flex-wrap gap-6 text-lg">
               <!-- <a href="https://github.com/Narith-hen/project-travel-destination.git" target="_blank" class="text-yellow hover:underline">GitHub</a> -->
-              <a href="https://somaet.website/" target="_blank" class="text-blue hover:underline" style="color: blue !important;">Live Demo</a>
+              <a href="https://somaet.website/" target="_blank" class="text-blue hover:underline live-demo-link">Live Demo</a>
             </div>
             <div class="mt-8 text-sm">
               <p class="font-semibold text-yellow mb-2">What I Learned:</p>
@@ -287,14 +200,14 @@
 
         <!-- Travel destination -->
         <div class="bg-slate-800/80 rounded-2xl overflow-hidden shadow-2xl hover:shadow-yellow/20 transition-all duration-500" data-aos="flip-left">
-          <img src="images/travel-preview.jpg" alt="Travel Destination" class="w-full h-56 sm:h-64 object-cover"/>
+          <img src="assets/images/travel-preview.jpg" alt="Travel Destination" class="w-full h-56 sm:h-64 object-cover"/>
           <div class="p-6 sm:p-8">
             <h3 class="text-2xl sm:text-3xl font-bold text-yellow mb-3">Travel Destination</h3>
             <p class="mb-6">A website that gives customers a sense of adventure with their travels...</p>
             <p class="text-sm text-gray-500 mb-4">HTML &bull; CSS &bull; SASS &bull; Figma</p>
             <div class="flex flex-wrap gap-6 text-lg">
               <!-- <a href="https://github.com/Narith-hen/project-travel-destination.git" target="_blank" class="text-yellow hover:underline">GitHub</a> -->
-              <a href="https://project-travel-destination.vercel.app/index.html" target="_blank" class="text-blue hover:underline" style="color: blue !important;">Live Demo</a>
+              <a href="https://project-travel-destination.vercel.app/index.html" target="_blank" class="text-blue hover:underline live-demo-link">Live Demo</a>
             </div>
             <div class="mt-8 text-sm">
               <p class="font-semibold text-yellow mb-2">What I Learned:</p>
@@ -311,8 +224,7 @@
     </div>
   </section>
 
-  <!-- Achievement -->
-  <section id="testimonials" class="py-20 px-4 bg-slate-900/40">
+<section id="testimonials" class="py-20 px-4 bg-slate-900/40">
     <div class="max-w-6xl mx-auto">
       <div class="text-center max-w-3xl mx-auto mb-14" data-aos="fade-up">
         <h2 class="text-4xl sm:text-5xl font-bold text-yellow">Achievement</h2>
@@ -321,56 +233,151 @@
         </p>
       </div>
 
-      <div class="grid gap-8 md:grid-cols-3">
-        <div class="testimonial-card rounded-2xl p-8" data-aos="fade-up" data-aos-delay="100">
-          <div class="w-14 h-14 rounded-full bg-yellow flex items-center justify-center mb-6">
-            <i class="fas fa-code text-2xl text-white"></i>
+      <div class="timeline-scroll">
+        <div class="education-roadmap achievement-roadmap">
+          <div class="education-step" data-aos="fade-up" data-aos-delay="100">
+            <div class="education-marker">
+              <i class="fas fa-code"></i>
+            </div>
+            <div class="education-card featured">
+              <p class="education-date">2025 - 2026</p>
+              <h3 class="text-2xl font-bold text-yellow mb-3">Built Real Projects</h3>
+              <p class="leading-7">
+                Completed portfolio, travel, and service booking projects using HTML, CSS, SASS, JavaScript, Python, and Flask.
+              </p>
+            </div>
           </div>
-          <h3 class="text-2xl font-bold text-yellow mb-4">Built Real Projects</h3>
-          <p class="text-lg leading-8">
-            Completed portfolio, travel, and service booking projects using HTML, CSS, SASS, JavaScript, Python, and Flask.
-          </p>
-        </div>
 
-        <div class="testimonial-card rounded-2xl p-8" data-aos="fade-up" data-aos-delay="200">
-          <div class="w-14 h-14 rounded-full bg-yellow flex items-center justify-center mb-6">
-            <i class="fas fa-user-tie text-2xl text-white"></i>
+          <div class="education-step" data-aos="fade-up" data-aos-delay="200">
+            <div class="education-marker">
+              <i class="fas fa-user-tie"></i>
+            </div>
+            <div class="education-card">
+              <p class="education-date">2025</p>
+              <h3 class="text-2xl font-bold text-yellow mb-3">Led As Scrum Master</h3>
+              <p class="leading-7">
+                Guided team workflow with JIRA, helped organize tasks, supported teammates, and kept project progress clear.
+              </p>
+            </div>
           </div>
-          <h3 class="text-2xl font-bold text-yellow mb-4">Led As Scrum Master</h3>
-          <p class="text-lg leading-8">
-            Guided team workflow with JIRA, helped organize tasks, supported teammates, and kept project progress clear.
-          </p>
-        </div>
 
-        <div class="testimonial-card rounded-2xl p-8" data-aos="fade-up" data-aos-delay="300">
-          <div class="w-14 h-14 rounded-full bg-yellow flex items-center justify-center mb-6">
-            <i class="fas fa-graduation-cap text-2xl text-white"></i>
+          <div class="education-step" data-aos="fade-up" data-aos-delay="300">
+            <div class="education-marker">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div class="education-card">
+              <p class="education-date">2025 - Present</p>
+              <h3 class="text-2xl font-bold text-yellow mb-3">Growing Developer Skills</h3>
+              <p class="leading-7">
+                Improved problem solving, folder structure, teamwork, and confidence through hands-on web development practice.
+              </p>
+            </div>
           </div>
-          <h3 class="text-2xl font-bold text-yellow mb-4">Growing Developer Skills</h3>
-          <p class="text-lg leading-8">
-            Improved problem solving, folder structure, teamwork, and confidence through hands-on web development practice.
-          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Education -->
-  <section id="education" class="py-20 px-4 bg-slate-900/60">
-    <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-4xl sm:text-5xl font-bold mb-16 text-yellow">Education</h2>
-      <img src="images/image.png" alt="PNC Logo" class="w-40 h-40 mx-auto rounded-full border-4 border-yellow shadow-2xl mb-8"/>
-      <h3 class="text-3xl font-bold">Passerelles Numeriques Cambodia (PNC)</h3>
-      <p class="text-2xl text-yellow mt-4 font-semibold">Pursuing Associate degree</p>
-      <p class="text-xl text-gray-400">2025 - Present</p>
-      <p class="text-lg text-gray-300 mt-8 max-w-2xl mx-auto">
-        Relevant courses: <span class="text-yellow font-semibold">Web Development</span>
-      </p>
+<section id="education" class="py-20 px-4 bg-slate-900/60">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-4xl sm:text-5xl font-bold mb-5 text-yellow">Education Roadmap</h2>
+        <p class="text-lg sm:text-xl leading-8">
+          My current education journey.
+        </p>
+      </div>
+
+      <div class="timeline-scroll">
+        <div class="education-roadmap">
+          <div class="education-step" data-aos="fade-up" data-aos-delay="100">
+            <div class="education-marker">
+              <img src="assets/images/image.png" alt="PNC Logo"/>
+            </div>
+            <div class="education-card featured">
+              <p class="education-date">2025 - Present</p>
+              <h3 class="text-2xl font-bold text-yellow mb-3">Passerelles Numeriques Cambodia</h3>
+              <p class="text-xl font-semibold mb-3">Pursuing Associate degree</p>
+              <p class="leading-7">
+                Relevant course: <span class="text-yellow font-semibold">Web Development</span>. I continue improving frontend, backend, teamwork, and project skills.
+              </p>
+            </div>
+          </div>
+
+          <div class="education-step" data-aos="fade-up" data-aos-delay="200">
+            <div class="education-marker">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div class="education-card">
+              <p class="education-date">2022 - 2024</p>
+              <h3 class="text-2xl font-bold text-yellow mb-3">Trail High School</h3>
+              <p class="text-xl font-semibold mb-3">High School Diploma</p>
+              <p class="leading-7">
+                Completed general education and started becoming interested in technology and website building.
+              </p>
+            </div>  
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Contact Form -->
-  <section id="contact" class="py-20 px-4">
+<section id="activity" class="py-20 px-4">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-12" data-aos="fade-up">
+        <div>
+          <h2 class="text-4xl sm:text-5xl font-bold text-yellow">Activity</h2>
+          <p class="text-lg sm:text-xl mt-5 max-w-3xl leading-8">
+            Moments from my learning, teamwork, and web development journey.
+          </p>
+        </div>
+      </div>
+
+      <div id="activity-news-grid" class="activity-news-grid" data-aos="fade-up" data-aos-delay="100"></div>
+    </div>
+  </section>
+
+<section id="references" class="py-20 px-4 bg-slate-900/40">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-14" data-aos="fade-up">
+        <h2 class="text-4xl sm:text-5xl font-bold text-yellow">References</h2>
+        <p class="text-lg sm:text-xl mt-5 leading-8">
+          People who can speak about my learning, teamwork, and project experience.
+        </p>
+      </div>
+
+      <div class="grid gap-8 md:grid-cols-2" data-aos="fade-up" data-aos-delay="100"​​>
+        <article class="reference-card rounded-2xl text-center md:col-start-2 md:col-end-3 mx-auto">
+          <div class="reference-card-inner">
+            <div class="reference-card-face reference-card-front p-7">
+              <img src="assets/images/people/lavy.png" alt="Sok Roth" class="w-28 h-28 rounded-full object-cover mx-auto mb-5 border-4 border-yellow shadow-lg"/>
+              <h3 class="text-2xl font-bold text-yellow mb-2">Lavy Hou</h3>
+              <p class="font-semibold mb-5">PNC PL Trainer</p>
+              <div class="space-y-3 text-left">
+                <a href="tel:+85512345678" class="reference-link">
+                  <i class="fas fa-phone"></i>
+                  <span>(+885)-12-723-877</span>
+                </a>
+                <a href="mailto:lavy.hou@passerellesnumeriques.org" class="reference-link">
+                  <i class="fas fa-envelope"></i>
+                  <span>lavy.hou@passerellesnumeriques.org</span>
+                </a>
+              </div>
+            </div>
+            <div class="reference-card-face reference-card-back p-7">
+              <i class="fas fa-quote-left reference-quote-icon"></i>
+              <p class="reference-quote">Can speak about my coding practice, learning progress, and class participation.</p>
+              <h3 class="text-xl font-bold text-yellow mt-6">Sok Roth</h3>
+              <p class="font-semibold">Web Development Trainer</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+ 
+
+<section id="contact" class="py-20 px-4">
     <div class="max-w-6xl mx-auto">
       <div class="text-center max-w-3xl mx-auto mb-14" data-aos="fade-up">
         <h2 class="text-4xl sm:text-5xl font-bold text-yellow">Get In Touch</h2>
@@ -409,7 +416,6 @@
       </div>
     </div>
   </section>
-
   <!-- Footer -->
   <footer class="py-10 text-center border-t border-gray-800">
     <p class="text-gray-400">&copy; 2025 Narith Hen.</p>
@@ -417,72 +423,7 @@
 
   <!-- Scripts -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    AOS.init({ duration: 900, easing: 'ease-out-cubic', once: true, offset: 80 });
-
-    const texts = ["Junior Web Developer","Full-Stack Enthusiast","HTML - CSS - JavaScript","Python & Flask Developer","Building the future..."];
-    let count = 0, index = 0;
-    function type() {
-      if (count === texts.length) count = 0;
-      let currentText = texts[count];
-      let letter = currentText.slice(0, ++index);
-      document.getElementById('typing-text').textContent = letter;
-      if (index === currentText.length) {
-        setTimeout(() => { index = 0; count++; setTimeout(type, 500); }, 2000);
-      } else setTimeout(type, 100);
-    }
-    window.addEventListener('load', () => setTimeout(type, 800));
-
-    function toggleTheme() {
-      const body = document.body;
-      const toggleBtn = document.getElementById('theme-toggle');
-      const icon = toggleBtn.querySelector('i');
-      if (body.classList.contains('dark')) {
-        body.classList.remove('dark'); body.classList.add('light');
-        icon.classList.replace('fa-moon', 'fa-sun');
-        localStorage.setItem('theme', 'light');
-      } else {
-        body.classList.remove('light'); body.classList.add('dark');
-        icon.classList.replace('fa-sun', 'fa-moon');
-        localStorage.setItem('theme', 'dark');
-      }
-    }
-
-    window.onload = function() {
-      const saved = localStorage.getItem('theme');
-      if (saved === 'light') {
-        document.body.classList.remove('dark'); document.body.classList.add('light');
-        document.getElementById('theme-toggle').querySelector('i').classList.replace('fa-moon', 'fa-sun');
-      }
-    }
-
-    // Mobile menu toggle
-    document.getElementById('mobile-toggle').addEventListener('click', () => {
-      const menu = document.getElementById('mobile-menu');
-      menu.classList.toggle('hidden');
-      menu.classList.toggle('flex');
-    });
-
-    document.querySelectorAll('#mobile-menu a').forEach((link) => {
-      link.addEventListener('click', () => {
-        const menu = document.getElementById('mobile-menu');
-        menu.classList.add('hidden');
-        menu.classList.remove('flex');
-      });
-    });
-
-    document.querySelectorAll('.show-more-btn').forEach((button) => {
-      button.addEventListener('click', () => {
-        const moreText = button.previousElementSibling;
-        moreText.classList.toggle('hidden');
-        button.textContent = moreText.classList.contains('hidden') ? 'Show more' : 'Show less';
-      });
-    });
-
-    if (window.location.search.includes('success')) {
-      document.getElementById('success-message').classList.add('show');
-      setTimeout(() => document.getElementById('success-message').classList.remove('show'), 5000);
-    }
-  </script>
+  <script src="assets/js/content.js"></script>
+  <script src="assets/js/script.js"></script>
 </body>
 </html>
